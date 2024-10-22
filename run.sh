@@ -13,14 +13,14 @@ python voronoi/run_voronoi.py
 python voronoi/run_voronoi_entropy.py
 python voronoi/run_entropy_v_th.py
 
-python boids/run_boids.py
-python boids/run_boids.py --test_complexity_every 10
+python boids/run_boids.py --epochs 1
+python boids/run_boids.py --epochs 1 --test_complexity_every 10
 python boids/evaluate_boids.py
 
 python voronoi/run_learn_exact_mlp.py
 
-python fixed_target/run_fixed_target.py  # By default, t=10
+python fixed_target/run_fixed_target.py --epochs 1 # By default, t=10
 
-python fixed_target/run_fixed_target.py --min_steps 10 --max_steps 21  # t \in [10, 20]
+python fixed_target/run_fixed_target.py --epochs 1--min_steps 10 --max_steps 21  # t \in [10, 20]
 
 python fixed_target/make_plots.py --path results/Grid2d  # Replace with target folder for each graph

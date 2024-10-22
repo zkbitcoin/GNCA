@@ -1,4 +1,5 @@
 lr=0.001
+epochs=1
 batch_size=30
 es_patience=20
 lr_patience=10
@@ -8,4 +9,4 @@ trajectory_len=300
 tr_set_size=300
 va_set_size=30
 te_set_size=30
-test_complexity_every=-1
+test_complexity_every=10

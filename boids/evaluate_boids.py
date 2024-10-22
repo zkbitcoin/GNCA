@@ -17,9 +17,15 @@ from modules.boids import make_dataset
 @tf.function(experimental_relax_shapes=True)
 def forward(model, x, a, i, training=None):
     """Computes one forward pass of the GNCA"""
-    x_pred = model((x, a, i[:, None]), training=training)
-    return x_pred
+    x = tf.cast(x, dtype=tf.float32)
+    # Ensure i is a 1D tensor with dtype int64
+    i = tf.convert_to_tensor(i, dtype=tf.int64)  # Ensure i is the correct dtype
+    # Wrap inputs in a list
+    inputs = [x, a, i]
+    # Call the model with inputs
+    x_pred = model(inputs, training=training)
 
+    return x_pred
 
 def avg_measure(trajectory, measure_fn, n_boids=None, coord=0, **kwargs):
     n_boids_total = trajectory.shape[-2]
@@ -187,7 +193,7 @@ def evaluate_complexity(
             else:
                 x_last = boid_trajectory_auto[-1]
                 a = boids_te.get_neighbors(x_last[:, :2])
-                a = ops.sp_matrix_to_sp_tensor(a)
+                a = sp_matrix_to_sp_tensor(a)
                 avg_degree_trajectory_auto.append(np.average(ops.degrees(a).numpy()))
 
                 inputs = [x_last, a, inputs[-1]]

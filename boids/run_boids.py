@@ -42,8 +42,7 @@ def run(data_tr, data_va, data_te):
     history = model.fit(
         loader_tr.load(),
         steps_per_epoch=loader_tr.steps_per_epoch,
-        #epochs=1000000,
-        epochs=1,
+        epochs=args.epochs,
         validation_data=loader_va.load(),
         validation_steps=loader_va.steps_per_epoch,
         callbacks=[
@@ -65,6 +64,7 @@ def run(data_tr, data_va, data_te):
 ####################################################################################
 parser = argparse.ArgumentParser()
 parser.add_argument("--lr", default=1e-3, type=float, help="Initial LR")
+parser.add_argument("--epochs", default=1000000, type=int, help="Training epochs")
 parser.add_argument(
     "--batch_size", default=30, type=int, help="Size of the mini-batches"
 )
