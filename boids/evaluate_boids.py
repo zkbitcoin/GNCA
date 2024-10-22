@@ -8,6 +8,7 @@ import numpy as np
 import tensorflow as tf
 from spektral.data import DisjointLoader
 from spektral.layers import ops
+from spektral.utils.sparse import sp_matrix_to_sp_tensor
 from tensorflow.keras.models import load_model
 
 from modules.boids import make_dataset
@@ -64,7 +65,7 @@ def evaluate(model, forward, trajectory_len, n_boids, init_blob=False):
         else:
             x_last = boid_trajectory_auto[-1]
             a = boids_te.get_neighbors(x_last[:, :2])
-            a = ops.sp_matrix_to_sp_tensor(a)
+            a = sp_matrix_to_sp_tensor(a)
             avg_degree_trajectory_auto.append(np.average(ops.degrees(a).numpy()))
 
             inputs = [x_last, a, inputs[-1]]

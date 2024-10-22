@@ -3,7 +3,7 @@ This script is equivalent to run_voronoi.py but it evaluates the entropy of the 
 GNCA after each training step.
 """
 import tensorflow as tf
-from spektral.layers.ops import sp_matrix_to_sp_tensor
+from spektral.utils.sparse import sp_matrix_to_sp_tensor
 from tensorflow.keras.losses import BinaryCrossentropy
 from tensorflow.keras.metrics import binary_accuracy
 from tensorflow.keras.optimizers import Adam

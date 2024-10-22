@@ -42,7 +42,8 @@ def run(data_tr, data_va, data_te):
     history = model.fit(
         loader_tr.load(),
         steps_per_epoch=loader_tr.steps_per_epoch,
-        epochs=1000000,
+        #epochs=1000000,
+        epochs=1,
         validation_data=loader_va.load(),
         validation_steps=loader_va.steps_per_epoch,
         callbacks=[

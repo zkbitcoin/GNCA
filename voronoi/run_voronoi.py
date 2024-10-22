@@ -1,6 +1,6 @@
 import tensorflow as tf
 from scipy import stats
-from spektral.layers.ops import sp_matrix_to_sp_tensor
+from spektral.utils.sparse import sp_matrix_to_sp_tensor
 from tensorflow.keras.losses import BinaryCrossentropy
 from tensorflow.keras.metrics import binary_accuracy
 from tensorflow.keras.optimizers import Adam
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     np.savez("results/learn_gca_loss_v_epoch.npz", histories=histories)
 
     hist_mean = np.median(histories, 0)
-    hist_std = stats.median_absolute_deviation(histories, 0)
+    hist_std = stats.median_abs_deviation(histories, 0)
 
     plt.figure(figsize=(3.1, 3))
     cmap = plt.get_cmap("Set2")
