@@ -34,9 +34,9 @@ ffmpeg_command = [
     'ffmpeg',
     '-framerate', '10',  # Adjust frame rate as needed
     '-i', 'frames/frame_%04d.png',  # Input pattern
-    '-c:v', 'libx264',
-    '-pix_fmt', 'yuv420p',
-    'results/voronoi_ca_animation.mpg'  # Output file
+    '-c:v', 'libx264',  # Use H.264 codec for compatibility
+    '-pix_fmt', 'yuv420p',  # Pixel format for broader compatibility
+    'results/voronoi_ca_animation.mp4'  # Change to .mp4 extension
 ]
 
 # Run the command and capture output
