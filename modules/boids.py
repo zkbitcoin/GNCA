@@ -5,6 +5,7 @@ from matplotlib import pyplot as plt
 from spektral import utils
 from spektral.data import Dataset, Graph
 from tqdm import tqdm
+import os
 
 
 class Boids:
@@ -47,6 +48,8 @@ class Boids:
 
         self.show = show
         self.figure = None
+
+        self.frame_number = 0
 
     def update_boids(self, positions, velocities, return_accel=False):
         accelerations = np.zeros_like(velocities)
@@ -221,6 +224,9 @@ class Boids:
         return positions, velocities, neighbors
 
     def plot(self, positions, **kwargs):
+        frames_folder = "frames"
+        os.makedirs(frames_folder, exist_ok=True) 
+        
         if self.figure is None:
             plt.ion()
             self.figure = plt.figure()
@@ -230,15 +236,22 @@ class Boids:
                 positions[:, 1],
                 marker=".",
                 edgecolor="k",
-                lw=0.5,
+                lw=0.5, 
                 **kwargs
             )
-            # anim = animation.FuncAnimation(figure, animate, frames=50, interval=1)
-            #plt.show()
-            plt.savefig("results/test.pdf")
+            plt.show()
+
+        # Increment the frame number for each plot call
+        self.frame_number += 1
+        
+        # Update the scatter plot with new positions
         self.scatter.set_offsets(positions)
         self.figure.canvas.draw()
         self.figure.canvas.flush_events()
+
+        # Save the current frame after updating with zero-padded frame number
+        plt.savefig(os.path.join(frames_folder, f"frame_{self.frame_number:04d}.png"))
+        #print(f"Frame {self.frame_number:04d} saved to {frames_folder}/frame_{self.frame_number:04d}.png")
 
 
 class BoidsDataset(Dataset):
