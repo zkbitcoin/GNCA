@@ -234,7 +234,8 @@ class Boids:
                 **kwargs
             )
             # anim = animation.FuncAnimation(figure, animate, frames=50, interval=1)
-            plt.show()
+            #plt.show()
+            plt.savefig("results/test.pdf")
         self.scatter.set_offsets(positions)
         self.figure.canvas.draw()
         self.figure.canvas.flush_events()
