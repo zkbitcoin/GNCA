@@ -7,16 +7,19 @@ export TF_CPP_MAX_VLOG_LEVEL=0
 
 export PYTHONPATH=.
 
-python voronoi/run_voronoi.py
-python voronoi/run_voronoi_entropy.py
-python voronoi/run_entropy_v_th.py
+python voronoi/run_animation.py
+#python voronoi/run_voronoi.py
+#python voronoi/run_voronoi_entropy.py
+#python voronoi/run_entropy_v_th.py
 
-python boids/run_boids.py --test_complexity_every 10
-python boids/run_boids.py 
 
-python boids/evaluate_boids.py
+python boids/show_boids.py
+#python boids/run_boids.py --test_complexity_every 10
+#python boids/run_boids.py
 
-python voronoi/run_learn_exact_mlp.py
+#python boids/evaluate_boids.py
+
+#python voronoi/run_learn_exact_mlp.py
 
 #python fixed_target/run_fixed_target.py # By default, t=10
 
